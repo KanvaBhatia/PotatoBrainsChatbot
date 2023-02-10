@@ -26,7 +26,7 @@ def get_response():
     try:
         response = openai.Completion.create(
             model="davinci:ft-personal-2023-02-10-08-28-43",
-            prompt=promt+context,
+            prompt=prompt+context,
             temperature=0.89,
             max_tokens=162,
             top_p=1,
