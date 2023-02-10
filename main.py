@@ -39,5 +39,5 @@ def get_response():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host = '0.0.0.0') # run the flask app on debug mode
+    app.run(debug=True, host = '0.0.0.0', port = os.getenv("PORT")) # run the flask app on debug mode
 
