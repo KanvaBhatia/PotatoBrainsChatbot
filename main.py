@@ -37,7 +37,7 @@ def get_response():
         previous_response = context + "JOY-> " + answer
         result = {"answer": answer, "new_prev_data": previous_response}
         result_json = json.dumps(result, indent = 4)
-        return result_json
+        return result_json, 200
     except Exception as e:
         print('error',e)
         exc_type, exc_obj, exc_tb = sys.exc_info()
