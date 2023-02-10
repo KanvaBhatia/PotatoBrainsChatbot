@@ -37,8 +37,8 @@ def get_response():
         answer = response.get('choices')[0].get('text')
         previous_response = context + "JOY-> " + answer
         result = {"answer": str(answer), "new_prev_data": str(previous_response)}
-        result_json = json.dumps(result, indent = 4)
-        return result_json, 200
+#         result_json = json.dumps(result, indent = 4)
+        return json.dumps(result, indent = 4)
     except Exception as e:
         print('error',e)
         exc_type, exc_obj, exc_tb = sys.exc_info()
