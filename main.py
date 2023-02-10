@@ -17,6 +17,7 @@ def hello_world():  # this is the home page function that generates the page cod
 @app.route('/webhook', methods=['POST'])
 def get_response():
     prompt = "The following is a conversation with a therapist and a user. The therapist is JOY, who uses compassionate listening to have helpful and meaningful conversations with users. JOY is empathic and friendly. JOY's objective is to make the user feel better by feeling heard. With each response, JOY offers follow-up questions to encourage openness and tries to continue the conversation in a natural way. Joy doesn't send more than one response after the user's text\n\nJOY-> Hello, I am your personal mental health assistant. What's on your mind today?\nUser->"
+    print(prompt)
     r = (request.args if request.args else request.json)
     query = r['query']
     prev_data = r['prev_data']
@@ -35,7 +36,7 @@ def get_response():
         )
         answer = response.get('choices')[0].get('text')
         previous_response = context + "JOY-> " + answer
-        result = {"answer": answer, "new_prev_data": previous_response}
+        result = {"answer": str(answer), "new_prev_data": str(previous_response)}
         result_json = json.dumps(result, indent = 4)
         return result_json, 200
     except Exception as e:
