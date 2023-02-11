@@ -24,7 +24,7 @@ def get_response():
     query = r['query']
     prev_data = r['prev_data']
     context = prev_data + "User->" + query + "POTATO->"
-    
+    print(prompt+context)
     try:
         response = openai.Completion.create(
             model="davinci:ft-personal-2023-02-10-08-28-43",
@@ -37,7 +37,7 @@ def get_response():
             stop=[" END", "POTATO->", "User->", "user->"]
         )
         answer = response.get('choices')[0].get('text')
-        previous_response = context + "POTATO-> " + answer
+        previous_response = context + answer
         result = {"answer": str(answer), "new_prev_data": str(previous_response)}
 #         result_json = json.dumps(result, indent = 4)
         return json.dumps(result, indent = 4)
