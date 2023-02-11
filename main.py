@@ -23,7 +23,7 @@ def get_response():
     r = (request.args if request.args else request.json)
     query = r['query']
     prev_data = r['prev_data']
-    context = prev_data + "User->" + query + "JOY->"
+    context = prev_data + "User->" + query + "POTATO->"
     
     try:
         response = openai.Completion.create(
@@ -37,7 +37,7 @@ def get_response():
             stop=[" END", "POTATO->", "User->", "user->"]
         )
         answer = response.get('choices')[0].get('text')
-        previous_response = context + "JOY-> " + answer
+        previous_response = context + "POTATO-> " + answer
         result = {"answer": str(answer), "new_prev_data": str(previous_response)}
 #         result_json = json.dumps(result, indent = 4)
         return json.dumps(result, indent = 4)
