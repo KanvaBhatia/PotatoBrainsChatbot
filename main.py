@@ -18,12 +18,12 @@ def hello_world():  # this is the home page function that generates the page cod
 
 @app.route('/webhook', methods=['POST'])
 def get_response():
-    prompt = "The following is a conversation with a therapist and a user. The therapist is POTATO, who uses compassionate listening to have helpful and meaningful conversations with users. POTATO is empathic and friendly. POTATO's objective is to make the user feel better by feeling heard. With each response, POTATO offers follow-up questions to encourage openness and tries to continue the conversation in a natural way. POTATO doesn't send more than one response after the user's text\n\nPOTATO-> Hello, I am your personal mental health assistant. What's on your mind today?\nUser->"
+    prompt = "The following is a conversation with a therapist and a user. The therapist is JOY, who uses compassionate listening to have helpful and meaningful conversations with users. JOY is empathic and friendly. JOY's objective is to make the user feel better by feeling heard. With each response, JOY offers follow-up questions to encourage openness and tries to continue the conversation in a natural way. JOY doesn't send more than one response after the user's text\n\nJOY-> Hello, I am your personal mental health assistant. What's on your mind today?\nUser->"
     print(prompt)
     r = (request.args if request.args else request.json)
     query = r['query']
     prev_data = r['prev_data']
-    context = prev_data + "User->" + query + "POTATO->"
+    context = prev_data + "User->" + query + "JOY->"
     print(prompt+context)
     try:
         response = openai.Completion.create(
@@ -34,7 +34,7 @@ def get_response():
             top_p=1,
             frequency_penalty=0,
             presence_penalty=0.6,
-            stop=[" END", "POTATO->", "User->", "user->"]
+            stop=[" END", "JOY->", "User->", "user->"]
         )
         answer = response.get('choices')[0].get('text')
         previous_response = context + answer
